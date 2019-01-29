@@ -1,0 +1,32 @@
+{
+ ----------------------
+	continueService(2000);	
+
+}
+
+
+
+private void continueService(int delay)
+    {
+
+        new Handler().postDelayed(new Runnable()
+        {
+            @Override
+            public void run() {
+
+
+                continueToMainAct(); //  for bypass login
+
+
+                finish();
+            }
+        }, delay);
+
+    }
+
+    private void continueToMainAct()
+    {
+
+        Intent intent = new Intent(getApplicationContext(), MainPage.class);
+        startActivity(intent);
+    }

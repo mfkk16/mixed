@@ -1,0 +1,12 @@
+ b12pu=findViewById(R.id.b12pu);
+        b12pu.setOnClickListener(new View.OnClickListener() 
+{
+            @Override
+            public void onClick(View v)
+
+            {
+                Intent popup=new Intent(getApplicationContext(),Popup.class);
+                startActivity(popup);
+            }
+
+});

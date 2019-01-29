@@ -1,0 +1,64 @@
+one activity to another---------------
+
+//        Forget password
+
+        newfpwd.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+                Intent newfpwd = new Intent(getApplicationContext(), Fogetpassword.class);
+                startActivity(newfpwd);
+
+            }
+        }
+        );
+		
+------------------------------------------------------------------------------------------------------
+
+Toast
+
+ Toast.makeText(New1.this, "Please enter the usere name", Toast.LENGTH_SHORT).show();
+ return;	
+
+ OR
+ 
+ Toast toast = Toast.makeText(getApplicationContext(),
+        "This is a message displayed in a Toast",
+        Toast.LENGTH_SHORT);
+    
+toast.show();
+ 
+---------------------------------------------------------------------------------------- -------------
+
+SWITCH BUTTON
+
+Switch switchdemo1 =  findViewById(R.id.switch1);
+        switchdemo1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                if (isChecked)
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "You are checked",
+                            Toast.LENGTH_SHORT);
+
+                    toast.show();
+                }
+                else
+               {
+                   Toast toast = Toast.makeText(getApplicationContext(),
+                           "You are not checked",
+                           Toast.LENGTH_SHORT);
+
+                   toast.show();
+                }
+            }
+        });
+		
+		
+--------------------------------------------------------------------------------------------------------
+
+

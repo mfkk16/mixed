@@ -1,0 +1,71 @@
+private void Login(String user, String pass) {
+        // Tag used to cancel the request
+        String tag_string_req = "string_req";
+
+//        https://api.androidhive.info/volley/string_response.html?user="Vishnu",pass="1234"
+
+        String url = "http://www.mocky.io/v2/597c41390f0000d002f4dbd1";
+
+        //  url += "user=" + user + "," + "pass=" + pass;
+
+        mRequestQueue = Volley.newRequestQueue(this);
+
+        final ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
+        StringRequest strReq = new StringRequest(Request.Method.GET,
+                url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d("JGBKUJG", response.toString());
+                responseText.setText(response);
+                pDialog.hide();
+
+                try {
+                    JSONObject obj1 = new JSONObject(response);
+
+                    JSONArray jsonArray = obj1.getJSONArray("users");
+                    final JSONObject obj2 = jsonArray.getJSONObject(0);
+                    JSONObject obj3 = jsonArray.getJSONObject(1);
+
+                    new Handler(Looper.getMainLooper()).post(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            try
+                            {
+                                Toast.makeText(Firstpage.this, "" + obj2.get("name"), Toast.LENGTH_SHORT).show();
+                            }
+                            catch (JSONException e)
+                            {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("Err", "Error: " + error.getMessage());
+                responseText.setText("Error: " + error.getMessage());
+                pDialog.hide();
+            }
+        });
+
+// Adding request to request queue
+
+        mRequestQueue.add(strReq);
+    }
+}

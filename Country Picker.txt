@@ -1,0 +1,86 @@
+    implementation 'com.github.mukeshsolanki:country-picker-android:1.1.9'
+
+.......................XML.........................................
+
+ <LinearLayout
+
+        android:paddingVertical="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/account_et_nationality"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1.6"
+            android:gravity="left|center"
+            android:lines="1"
+            android:hint="Nationality"
+            android:padding="4dp"
+            android:textColor="#969696" />
+
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/selected_country_flag_image_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight=".4"
+            android:paddingRight="2dp"
+            tools:src="@mipmap/ic_launcher"
+            tools:srcCompat="@tools:sample/backgrounds/scenic[2]" />
+
+
+
+
+
+
+    </LinearLayout>
+
+	
+	
+....................................... .class ...............................................
+
+public class Home extends AppCompatActivity implements CountryPickerListener
+
+
+
+  private CountryPicker countryPicker;
+    private ImageView countryFlagImageView;
+    private TextView countryNameTextView;
+	
+	
+	
+	
+	
+
+@Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_page);
+        DOB = findViewById(R.id.TutorSignUP_ET_DOB);
+        countryFlagImageView = findViewById(R.id.selected_country_flag_image_view);
+        countryNameTextView = findViewById(R.id.account_et_nationality);
+
+
+        countryPicker = CountryPicker.newInstance("Select Country");
+        countryPicker.setListener(this);
+
+        countryNameTextView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                countryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER");
+            }
+        });
+
+@Override
+    public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID)
+    {
+        countryFlagImageView.setImageResource(flagDrawableResID);
+        countryNameTextView.setText(name);
+        countryPicker.dismiss();
+    }
+		
